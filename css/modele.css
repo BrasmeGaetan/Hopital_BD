@@ -351,7 +351,8 @@
 }
 
 body {
-  background-image: url(../img/plancher-bois-brun.jpg);
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(103,103,103,1) 69%, rgba(255,255,255,1) 100%);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -359,13 +360,13 @@ body {
 }
 
 header {
-  background-color: #6d2932b2;
+  background-color: #fcf5f5b2;
   font-family: fantasy;
   font-size: 30px;
 }
 
 footer {
-  background-color: #6d2932b2;
+  background-color: #d8cbcbb2;
   font-family: fantasy;
   font-size: 30px;
   width: 100%;
