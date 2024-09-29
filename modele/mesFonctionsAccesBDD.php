@@ -197,8 +197,9 @@ function modifierLivre($bdd, $id, $titre,  $idgenre, $idauteur, $resumeLivre, $d
 }
 
 function getUser($bdd, $pseudo) {
-    $requete = $bdd->prepare("SELECT mot_de_passe FROM employes WHERE pseudo = :pseudo");
+    $requete = $bdd->prepare("SELECT pseudo, mdp FROM employes WHERE pseudo = :pseudo");
     $requete->execute(['pseudo' => $pseudo]);
-    return $requete->fetch(PDO::FETCH_NUM); // Retourner uniquement le mot de passe pour l'utilisateur
+    return $requete->fetch(PDO::FETCH_ASSOC); // Retourne les informations de l'utilisateur sous forme de tableau associatif
 }
+
 
