@@ -351,25 +351,38 @@
 }
 
 body {
-  background-image: url(../img/plancher-bois-brun.jpg);
+  background: rgb(31,104,105);
+  background: linear-gradient(90deg, rgba(31,104,105,1) 0%, rgba(90,168,255,1) 81%);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Arial", sans-serif;
 }
 
+
 header {
-  background-color: #6d2932b2;
   font-family: fantasy;
-  font-size: 30px;
+  font-size: 20px;
 }
 
+.nav-bar{
+  flex: 5;
+  font-size: 20px;
+}
+
+.accueil{
+  margin-left: -10%;
+}
+.loupe-container{
+  margin-right: -10%;
+  font-size: 24px;
+}
 footer {
-  background-color: #6d2932b2;
+  background-color: #000000b2;
   font-family: fantasy;
   font-size: 30px;
   width: 100%;
-  border-top: solid black 1px;
+
   margin-top: 100%;
 }
 
