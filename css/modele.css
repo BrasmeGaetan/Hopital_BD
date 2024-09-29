@@ -373,17 +373,23 @@ header {
 .accueil{
   margin-left: -10%;
 }
-.loupe-container{
-  margin-right: -10%;
-  font-size: 24px;
+.deconnexion{
+  margin-right: 10%;
+  font-size: 20px;
 }
-footer {
-  background-color: #000000b2;
-  font-family: fantasy;
-  font-size: 30px;
-  width: 100%;
 
-  margin-top: 100%;
+footer {
+  font-family: fantasy;
+  font-size: 20px;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.social-media{
+  font-family: fantasy;
+  font-size: 20px;
+  width: 100%;
+  margin-top: 10%;
 }
 
 header a {
