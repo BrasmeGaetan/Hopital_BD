@@ -196,10 +196,10 @@ function modifierLivre($bdd, $id, $titre,  $idgenre, $idauteur, $resumeLivre, $d
     $repReq->execute();
 }
 
-function getHash($bdd, $pseudo)
-{
-    $repReq = $bdd->prepare("SELECT mdp FROM users WHERE pseudo=:pseudo");
-    $repReq->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
-    $repReq->execute();
-    return $repReq->fetchAll();
+function getUser($bdd, $pseudo) {
+    $requete = $bdd->prepare("SELECT pseudo, mdp FROM employes WHERE pseudo = :pseudo");
+    $requete->execute(['pseudo' => $pseudo]);
+    return $requete->fetch(PDO::FETCH_ASSOC); // Retourne les informations de l'utilisateur sous forme de tableau associatif
 }
+
+
