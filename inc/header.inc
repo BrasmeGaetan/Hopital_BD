@@ -22,6 +22,10 @@
       <p class="deconnexion-p"><a href="./index.php?action=chercher">Chercher</a></p>
       <a href="./index.php?action=connexion&logout"></a>
     </div>
+    <div class="deconnexion">
+    <p class="deconnexion-p"><a href="./index.php?action=chercher">Chercher</a></p>
+    <p class="deconnexion-p"><a href="./index.php?action=deconnexion">Déconnexion</a></p>
+</div>
     <div class="Livres">
       <p class="livres-p">
         <a href="./index.php?action=livres"> Livres </a>
