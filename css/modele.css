@@ -353,6 +353,7 @@
 body {
   background: rgb(31,104,105);
   background: linear-gradient(90deg, rgba(31,104,105,1) 0%, rgba(90,168,255,1) 81%);
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -361,6 +362,7 @@ body {
 
 
 header {
+  background-color: #fcf5f5b2;
   font-family: fantasy;
   font-size: 20px;
 }
