@@ -12,6 +12,9 @@
     <img src="../img/X.png" alt="X">
   </a>
 </section>
+<section id="Liste de données">
+  <h2>Données nécessaires</h2>
+  <a href="/controleur/li-données.php"></a>
 </footer>
 </body>
 </html>
