@@ -15,4 +15,4 @@ $categories = array("idlivre","titre","nom","prenom","LEFT(resumeLivre, 50)");
 $donnees = getLivresInfo($bdd,$id);
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
-include "vue/vueAccueil.php";
+include "vue/vueLivres.php";
