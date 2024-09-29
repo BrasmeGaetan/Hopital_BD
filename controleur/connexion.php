@@ -19,7 +19,7 @@ if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
     // Vérifier si l'utilisateur existe et que le mot de passe correspond
     if ($user && $user['mdp'] == $_POST['mdp']) {
         $_SESSION['valid'] = true;
-        echo "Connexion réussie";
+
     } else {
         echo "Pseudo ou mot de passe incorrect.";
     }
