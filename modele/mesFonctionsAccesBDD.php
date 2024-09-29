@@ -196,10 +196,9 @@ function modifierLivre($bdd, $id, $titre,  $idgenre, $idauteur, $resumeLivre, $d
     $repReq->execute();
 }
 
-function getHash($bdd, $pseudo)
-{
-    $repReq = $bdd->prepare("SELECT mdp FROM users WHERE pseudo=:pseudo");
-    $repReq->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
-    $repReq->execute();
-    return $repReq->fetchAll();
+function getUser($bdd, $pseudo) {
+    $requete = $bdd->prepare("SELECT mot_de_passe FROM employes WHERE pseudo = :pseudo");
+    $requete->execute(['pseudo' => $pseudo]);
+    return $requete->fetch(PDO::FETCH_NUM); // Retourner uniquement le mot de passe pour l'utilisateur
 }
+
