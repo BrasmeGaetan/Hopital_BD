@@ -19,7 +19,7 @@
       <p class="contact-p"><a href="./index.php?action=contact">Contact</a></p>
     </div>
     <div class="deconnexion">
-      <p class="deconnexion-p"><a href="./index.php?action=chercher">Deconnexion</a></p>
+      <p class="deconnexion-p"><a href="./index.php?action=chercher">Chercher</a></p>
       <a href="./index.php?action=connexion&logout"></a>
     </div>
   </nav>

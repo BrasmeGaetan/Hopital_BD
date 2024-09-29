@@ -617,3 +617,21 @@ footer div p {
   border-radius: 5px;
   margin-top: 20px;
 }
+
+.footer {
+  background-color: #2c3e50; /* Couleur de fond sombre */
+  color: #ecf0f1; /* Couleur du texte claire */
+  padding: 30px 0; /* Espacement vertical */
+  text-align: center; /* Centrer le texte */
+}
+
+.footer-container {
+  max-width: 1200px; /* Largeur maximale pour le footer */
+  margin: 0 auto; /* Centrer le footer sur la page */
+}
+
+.footer-bottom {
+  background-color: #34495e; /* Couleur de fond pour la section des droits d'auteur */
+  padding: 10px 0; /* Espacement vertical */
+  font-size: 14px; /* Taille de police plus petite */
+}
