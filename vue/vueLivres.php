@@ -3,14 +3,16 @@
         <div>
             <form method="post" class="zone-tri">
                 <h1>Tri de la recherche</h1>
-                <div>
+                <div class="critere-recherche">
                     <label for="critere-recherche">Critère de recherche</label>
                     <select name="critere-recherche" id="critere-recherche">
-                        <option value="">-- Veuillez choisir un critère de recherche --</option>
-                        <option value="1">Référence</option>
-                        <option value="2">Titre</option>
-                        <option value="3">Auteur</option>
-                        <option value="4">Résumé</option>
+                        <div class="option">
+                            <option value="">-- Veuillez choisir un critère de recherche --</option>
+                            <option value="1">Référence</option>
+                            <option value="2">Titre</option>
+                            <option value="3">Auteur</option>
+                            <option value="4">Résumé</option>
+                        </div>
                     </select>
                 </div>
                 <div>
