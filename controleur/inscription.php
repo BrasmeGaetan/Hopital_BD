@@ -1,26 +1,37 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
-    <link rel="stylesheet" href="style.css"> <!-- Ajoute ton propre CSS -->
-</head>
-<body>
-    <h2>Créer un compte patient</h2>
-    <form method="POST" action="traitement_inscription.php"> <!-- Spécifie le fichier qui traitera l'inscription -->
-        <label for="pseudo">Pseudo :</label>
-        <input type="text" id="pseudo" name="pseudo" required>
+<?php
+include_once '../modele/mesFonctionsAccesBDD.php'; // Assurez-vous que le chemin est correct
+session_start(); // Démarre la session
 
-        <label for="mdp">Mot de passe :</label>
-        <input type="password" id="mdp" name="mdp" required>
+$bdd = connexionBDD(); // Connexion à la base de données
 
-        <button type="submit">Créer un compte</button>
-    </form>
+// Si la requête est de type POST (soumission du formulaire)
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $pseudo = $_POST['pseudo'];
+    $mdp = $_POST['mdp'];
 
-    <p>
-        Déjà un compte ? 
-        <a href="connexion.php">Se connecter</a> <!-- Redirige vers la page de connexion -->
-    </p>
-</body>
-</html>
+    // Vérifier si le pseudo existe déjà
+    $requeteVerif = $bdd->prepare("SELECT COUNT(*) FROM employes WHERE pseudo = :pseudo");
+    $requeteVerif->execute(['pseudo' => $pseudo]);
+    $exists = $requeteVerif->fetchColumn();
+
+    if ($exists) {
+        echo "Ce pseudo est déjà pris. Veuillez en choisir un autre.";
+    } else {
+        // Insertion du nouvel utilisateur
+        $requete = $bdd->prepare("INSERT INTO employes (pseudo, mdp) VALUES (:pseudo, :mdp)");
+        $result = $requete->execute(['pseudo' => $pseudo, 'mdp' => $mdp]);
+
+        if ($result) {
+            echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
+            header("Location: ../connexion.php"); // Redirection vers la page de connexion
+            exit();
+        } else {
+            echo "Erreur lors de l'inscription. Veuillez réessayer.";
+        }
+    }
+} else {
+    // Rediriger vers le formulaire d'inscription si ce n'est pas une requête POST
+    header("Location: ../vue/vueInscription.php");
+    exit();
+}
+?>

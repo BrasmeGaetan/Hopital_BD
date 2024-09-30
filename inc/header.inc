@@ -26,10 +26,6 @@
       <p class="deconnexion-p"><a href="./index.php?action=chercher">Chercher</a></p>
       <a href="./index.php?action=connexion&logout"></a>
     </div>
-    <div class="Livres">
-      <p class="livres-p">
-        <a href="./index.php?action=livres"> Livres </a>
-      </p>
   </nav>
   </header>
   
