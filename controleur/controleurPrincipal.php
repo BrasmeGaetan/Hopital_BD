@@ -5,6 +5,7 @@ function controleurPrincipal($action){
     $lesActions["defaut"] = "accueil.php";
     $lesActions["chercher"] = "chercher.php";
     $lesActions["livres"] = "livres.php";
+    $lesActions["cookies"] = "cookies.php";
     $lesActions["contact"] = "contact.php";
     $lesActions["connexion"] = "connexion.php";
     $lesActions["menu"] = "menu.php";

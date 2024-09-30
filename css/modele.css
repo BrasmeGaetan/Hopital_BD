@@ -372,15 +372,17 @@ header {
 }
 
 .accueil{
-  margin-left: 10%;
+  margin-left: 20%;
 }
 .connexion{
   margin-left: 10%;
 }
-.Livres{
+.livres{
+  margin-left: 10%;
   margin-right: 20%;
 }
 .deconnexion{
+  margin-left: 10%;
   margin-right: 10%;
   font-size: 20px;
 }
