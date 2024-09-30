@@ -15,21 +15,20 @@
     <div class="connexion">
       <p class="connexion-p"><a href="./index.php?action=connexion">Connexion</a></p>
     </div>
+    <div class="cookies">
+      <p class="cookies-p"><a href="./index.php?action=cookies">Cookies</a></p>
+    </div>
     <div class="contact">
       <p class="contact-p"><a href="./index.php?action=contact">Contact</a></p>
     </div>
-    <div class="Livres">
+    <div class="livres">
       <p class="livres-p">
         <a href="./index.php?action=livres"> Livres </a>
       </p>
     <div class="deconnexion">
-      <p class="deconnexion-p"><a href="./index.php?action=chercher">Chercher</a></p>
+      <p class="deconnexion-p"><a href="./index.php?action=deconnexion">Deconnexion</a></p>
       <a href="./index.php?action=connexion&logout"></a>
     </div>
-    <div class="Livres">
-      <p class="livres-p">
-        <a href="./index.php?action=livres"> Livres </a>
-      </p>
   </nav>
   </header>
   
