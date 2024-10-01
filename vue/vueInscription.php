@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
-    <link rel="stylesheet" href="style.css"> <!-- Ajoute ton propre CSS -->
-</head>
+<?php include_once 'modele/mesFonctionsAccesBDD.php'; ?>
+
+<div class="zone-inscription">
 <body>
     <h2>Créer un compte patient</h2>
     <form method="POST" action="traitement_inscription.php"> <!-- Spécifie le fichier qui traitera l'inscription -->
@@ -23,4 +18,5 @@
         <a href="./index.php?action=connexion">Se connecter</a> <!-- Redirige vers la page de connexion -->
     </p>
 </body>
+</div>
 </html>
