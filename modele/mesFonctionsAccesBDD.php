@@ -202,4 +202,10 @@ function getUser($bdd, $pseudo) {
     return $requete->fetch(PDO::FETCH_ASSOC); // Retourne les informations de l'utilisateur sous forme de tableau associatif
 }
 
+function userExists($bdd, $pseudo) {
+    $stmt = $bdd->prepare("SELECT COUNT(*) FROM employes WHERE pseudo = ?");
+    $stmt->execute([$pseudo]);
+    return $stmt->fetchColumn() > 0; // Retourne true si le pseudo existe déjà
+}
+
 
