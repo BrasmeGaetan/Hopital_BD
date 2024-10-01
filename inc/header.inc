@@ -12,9 +12,6 @@
         <a href="./index.php?action=defaut"> Acceuil </a>
       </p>
     </div>
-    <div class="connexion">
-      <p class="connexion-p"><a href="./index.php?action=connexion">Connexion</a></p>
-    </div>
     <div class="cookies">
       <p class="cookies-p"><a href="./index.php?action=cookies">Cookies</a></p>
     </div>
@@ -24,6 +21,13 @@
     <div class="livres">
       <p class="livres-p">
         <a href="./index.php?action=livres">Livres</a>
+      </p>
+      <div class="connexion">
+      <p class="connexion-p"><a href="./index.php?action=connexion">Connexion</a></p>
+    </div>
+    <div class="deconnexion">
+      <p class="deconnexion-p">
+        <a href="./index.php?action=connexion&logout">Deconnexion</a>
       </p>
 
     </div>
