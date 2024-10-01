@@ -1,22 +1,19 @@
 <?php include_once 'modele/mesFonctionsAccesBDD.php'; ?>
-
-<div class="zone-inscription">
 <body>
-    <h2>Créer un compte patient</h2>
-    <form method="POST" action="traitement_inscription.php"> <!-- Spécifie le fichier qui traitera l'inscription -->
-        <label for="pseudo">Pseudo :</label>
-        <input type="text" id="pseudo" name="pseudo" required>
+    <div class="zone-inscription">
+        <h1>Créer un compte patient</h1>
+        <form method="POST" action="traitement_inscription.php"> <!-- Spécifie le fichier qui traitera l'inscription -->
+            <input type="text" name="pseudo" placeholder="Pseudo" required>
+            <input type="text" name="nom" placeholder="Nom" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="numero" placeholder="Numéro de téléphone" required>
+            <input type="password" name="mdp" placeholder="Mot de passe" required>
+            <input class="btn" type="submit" value="Créer un compte">
+        </form>
 
-        <label for="mdp">Mot de passe :</label>
-        <input type="password" id="mdp" name="mdp" required>
-
-        <button type="submit">Créer un compte</button>
-    </form>
-
-    <p>
-        Déjà un compte ? 
-        <a href="./index.php?action=connexion">Se connecter</a> <!-- Redirige vers la page de connexion -->
-    </p>
+        <p>
+            Déjà un compte ? 
+            <a href="./index.php?action=connexion">Se connecter</a> <!-- Redirige vers la page de connexion -->
+        </p>
+    </div>
 </body>
-</div>
-</html>
