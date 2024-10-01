@@ -2,7 +2,7 @@
 <body>
     <div class="zone-connexion">
         <h1>Connexion</h1>
-        <form method="post" action="connexion.php"> <!-- Assurez-vous que 'connexion.php' est le bon fichier pour traiter la connexion -->
+        <form method="post" action="./index.php?action=connexion"> <!-- Assurez-vous que 'connexion.php' est le bon fichier pour traiter la connexion -->
             <input type="text" name="pseudo" placeholder="Identifiant" required>
             <input type="password" name="mdp" placeholder="Mot de Passe" required>
             <input class="btn" type="submit" value="Se connecter">
