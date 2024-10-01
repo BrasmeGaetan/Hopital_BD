@@ -1,7 +1,7 @@
-<?php include_once 'modele/mesFonctionsAccesBDD.php'; ?>
+<div class="zone-inscription">
 <body>
     <h2>Créer un compte patient</h2>
-    <form method="POST" action="../controleur/inscription.php"> <!-- Spécifiez le fichier qui traitera l'inscription -->
+    <form method="POST" action="traitement_inscription.php"> <!-- Spécifie le fichier qui traitera l'inscription -->
         <label for="pseudo">Pseudo :</label>
         <input type="text" id="pseudo" name="pseudo" required>
 
@@ -13,7 +13,8 @@
 
     <p>
         Déjà un compte ? 
-        <a href="../connexion.php">Se connecter</a> 
+        <a href="./index.php?action=connexion">Se connecter</a> <!-- Redirige vers la page de connexion -->
     </p>
 </body>
+</div>
 </html>
