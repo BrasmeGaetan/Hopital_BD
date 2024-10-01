@@ -4,34 +4,35 @@ session_start(); // Démarre la session
 
 $bdd = connexionBDD(); // Connexion à la base de données
 
-if (isset($_GET["logout"])) { // Gestion de la déconnexion
+// Gestion de la déconnexion
+if (isset($_GET["logout"])) {
     unset($_SESSION['valid']);
     session_unset();
     session_destroy();
     echo "Déconnexion réussie.";
 }
 
+// Gestion de la connexion
 if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
-    // Récupérer le mot de passe associé au pseudo
-    $user = getUser(connexionBDD(), $_POST['pseudo']);
-    
+    // Récupérer l'utilisateur par pseudo
+    $user = getUser($bdd, $_POST['pseudo']);
 
     // Vérifier si l'utilisateur existe et que le mot de passe correspond
-    if ($user && $user['mdp'] == $_POST['mdp']) {
+    if ($user && $user['mdp'] === $_POST['mdp']) {
         $_SESSION['valid'] = true;
-
     } else {
         echo "Pseudo ou mot de passe incorrect.";
     }
 }
 
+// Vérifier si l'utilisateur est connecté
 if (isset($_SESSION['valid']) && $_SESSION['valid']) {
     // Si l'utilisateur est authentifié, charger les données
-    $Connexion = connexionBDD();
-    $genre = getGenre($Connexion)->fetchAll();
-    $auteur = getAuteur($Connexion)->fetchAll();
+    $genre = getGenre($bdd)->fetchAll();
+    $auteur = getAuteur($bdd)->fetchAll();
     include "vue/vueMenu.php";
 } else {
-    // Afficher le formulaire de connexion si l'utilisateur n'est pas authentifié
+    // Afficher le formulaire de connexion
     include "vue/vueConnexion.php";
 }
+?>
