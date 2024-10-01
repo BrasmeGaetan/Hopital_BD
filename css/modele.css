@@ -2,6 +2,8 @@
   border-bottom: 1px solid rgb(77, 69, 69);
   display: flex;
   align-items: center;
+  width: 100%;
+  
 }
 
 .nav-bar div:last-child{
@@ -174,7 +176,7 @@
   padding: 2%;
   padding-top: 0;
   width: 45%;
-  background-color: #2f27ce;
+  background-color: #1b158b;
   font-family: inter, ui-sans-serif;
   font-size: 18px;
   color: #f6f6f6;
@@ -191,7 +193,7 @@
   padding: 2%;
   padding-top: 0;
   width: 45%;
-  background-color: #2f27ce;
+  background-color: #1b158b;
   font-family: Graphik, sans-serif;
   font-size: 18px;
   color: #f6f6f6;
@@ -314,8 +316,7 @@
 }
 
 .contact {
-  display: flex;
-  flex: auto;
+
   justify-content: center;
 }
 
@@ -664,6 +665,8 @@ footer div p {
 .cookies{
   color:#f6f6f6;
   font-family: inter, ui-sans-serif;
+  text-align: center; /* Centrer le texte */
+  border-left: 10px;
 }
 
 .critere-recherche{
@@ -676,4 +679,44 @@ footer div p {
 
 a{
   color:#f6f6f6;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-item {
+  padding: 10px 20px;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-item a:hover {
+  color: #ecf0f1;
+}
+
+header nav {
+  background-color: #4b4c4d;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+header .nav-item a {
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.nav-item a:hover {
+  background-color: #555657;
+  color: white;
 }
