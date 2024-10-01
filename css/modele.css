@@ -80,7 +80,7 @@
   flex: 2;
   height: 48vh;
   border: solid rgb(0, 0, 0) 1px;
-  background-color: rgba(67, 17, 17, 0.35);
+  background-color: rgb(44, 43, 43);
   font-family: fantasy;
   font-size: 18px;
   color: #c7b7a3;
@@ -94,13 +94,10 @@
   padding: 1%;
   padding-bottom: 4%;
   flex: 2;
-  border: solid rgb(0, 0, 0) 1px;
-  background-color: rgba(67, 17, 17, 0.35);
-  font-family: fantasy;
+  background-color: #2f27ce;
+  font-family: inter, ui-sans-serif;
   font-size: 18px;
-  color: #c7b7a3;
-  text-shadow: 1px 0 #000, -2px 0 #000, 0 1px #000, 0 -2px #000, 1px 1px #000,
-    -1px -1px #000, 1px -1px #000, -1px 1px #000;
+  color: #f6f6f6;
   border-radius: 15px;
 }
 
@@ -148,6 +145,12 @@
   flex: 5;
 }
 
+.btn{
+  background-color: #f6f6f6;
+  font-family: inter, ui-sans-serif;
+  color: #f6f6f6
+}
+
 .zone-connexion{
   display: flex;
   justify-content: center;
@@ -157,27 +160,23 @@
   margin-left: 35%;
   margin-right: 35%;
   padding: 1%;
-  background-color: rgba(255, 255, 255, 0.35);
-  font-family: fantasy;
+  background-color: #2f27ce;
+  font-family: Graphik, sans-serif;
   font-size: 18px;
-  color: #c7b7a3;
-  text-shadow: 1px 0 #000, -2px 0 #000, 0 1px #000, 0 -2px #000, 1px 1px #000,
-    -1px -1px #000, 1px -1px #000, -1px 1px #000;
+  color: #f6f6f6;
   border-radius: 15px;
 }
+
 
 .zone-menu{
   margin: 2%;
   padding: 2%;
   padding-top: 0;
   width: 45%;
-  border: solid rgb(0, 0, 0) 1px;
-  background-color: rgba(67, 17, 17, 0.35);
-  font-family: fantasy;
+  background-color: #2f27ce;
+  font-family: inter, ui-sans-serif;
   font-size: 18px;
-  color: #c7b7a3;
-  text-shadow: 1px 0 #000, -2px 0 #000, 0 1px #000, 0 -2px #000, 1px 1px #000,
-    -1px -1px #000, 1px -1px #000, -1px 1px #000;
+  color: #f6f6f6;
   border-radius: 15px;
 }
 
@@ -191,13 +190,10 @@
   padding: 2%;
   padding-top: 0;
   width: 45%;
-  border: solid rgb(0, 0, 0) 1px;
-  background-color: rgba(67, 17, 17, 0.35);
-  font-family: fantasy;
+  background-color: #2f27ce;
+  font-family: Graphik, sans-serif;
   font-size: 18px;
-  color: #c7b7a3;
-  text-shadow: 1px 0 #000, -2px 0 #000, 0 1px #000, 0 -2px #000, 1px 1px #000,
-    -1px -1px #000, 1px -1px #000, -1px 1px #000;
+  color: #f6f6f6;
   border-radius: 15px;
 }
 
@@ -365,9 +361,11 @@
 }
 
 body {
+  /*
   background: rgb(31,104,105);
   background: linear-gradient(90deg, rgba(31,104,105,1) 0%, rgba(90,168,255,1) 81%);
-
+  */
+  background-color: #000;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -376,14 +374,17 @@ body {
 
 
 header {
-  background-color: #fcf5f5b2;
-  font-family: fantasy;
-  font-size: 20px;
+  background-color: #f5f5f50d;
+  font-family: Graphik, sans-serif;
+  font-size: 10px;
+  border-bottom: #2c3e50;
 }
 
 .nav-bar{
   flex: 5;
-  font-size: 20px;
+  font-size: 15px;
+  margin-left: 10%;
+  border-bottom: #2c3e50;
 }
 
 .accueil{
@@ -399,11 +400,11 @@ header {
 .deconnexion{
   margin-left: 10%;
   margin-right: 10%;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 footer {
-  font-family: fantasy;
+  font-family: Graphik, sans-serif;
   font-size: 20px;
   width: 100%;
   margin-top: 10%;
@@ -471,7 +472,7 @@ footer div p {
 
 
 .categorie {
-  background-color: #493c3cad;
+  background-color: #f6f6f6;
   margin-bottom: 5px;
   font-family: fantasy;
   width: 500px;
@@ -480,12 +481,12 @@ footer div p {
 }
 
 .categorie-accueil {
-  background-color: #493c3cad;
+  background-color: #f6f6f6;
   margin-bottom: 5px;
   margin-right: 3%;
-  font-family: fantasy;
+  font-family: Graphik, sans-serif;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .liste-items{
@@ -510,7 +511,7 @@ footer div p {
   text-decoration: none;
   font-size: 15px;
   border-radius: 20px;
-  font-family: fantasy;
+  font-family: Graphik, sans-serif;
 }
 
 .sousCategories {
@@ -518,7 +519,7 @@ footer div p {
   padding: 0;
   margin: 0;
   display: none;
-  background-color: #493c3cad;
+  background-color: #f6f6f6;
   border-radius: 20px;
   font-family: fantasy;
 }
@@ -641,7 +642,7 @@ footer div p {
 }
 
 .footer {
-  background-color: #2c3e50; /* Couleur de fond sombre */
+  background-color: #f5f5f50d; /* Couleur de fond sombre */
   color: #ecf0f1; /* Couleur du texte claire */
   padding: 30px 0; /* Espacement vertical */
   text-align: center; /* Centrer le texte */
@@ -653,7 +654,24 @@ footer div p {
 }
 
 .footer-bottom {
-  background-color: #34495e; /* Couleur de fond pour la section des droits d'auteur */
+  background-color: #f5f5f50d; /* Couleur de fond pour la section des droits d'auteur */
   padding: 10px 0; /* Espacement vertical */
   font-size: 14px; /* Taille de police plus petite */
+}
+
+.cookies{
+  color:#f6f6f6;
+  font-family: inter, ui-sans-serif;
+}
+
+.critere-recherche{
+  font-family: Graphik, sans-serif;
+}
+
+.option{
+  font-family: Graphik, sans-serif;
+}
+
+a{
+  color:#f6f6f6;
 }

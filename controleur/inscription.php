@@ -1,4 +1,8 @@
 <?php
+
+include "vue/vueInscription.php";
+
+
 include_once '../modele/mesFonctionsAccesBDD.php'; // Assurez-vous que le chemin est correct
 session_start(); // Démarre la session
 
@@ -34,3 +38,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include "vue/vueInscription.php";
 }
 ?>
+
