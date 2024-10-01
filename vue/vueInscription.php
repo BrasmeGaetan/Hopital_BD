@@ -3,7 +3,7 @@
     <div class="zone-inscription">
         <h1>Créer un compte patient</h1>
         <form method="POST" action="traitement_inscription.php"> <!-- Spécifie le fichier qui traitera l'inscription -->
-            <input type="text" name="pseudo" placeholder="Pseudo" required>
+            <input type="text" name="pseudo" placeholder="Prenom" required>
             <input type="text" name="nom" placeholder="Nom" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="tel" name="numero" placeholder="Numéro de téléphone" required>
