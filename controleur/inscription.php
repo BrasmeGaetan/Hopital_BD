@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // Rediriger vers le formulaire d'inscription si ce n'est pas une requête POST
-    header("Location: ../vue/vueInscription.php");
-    exit();
+    include "vue/vueInscription.php";
 }
 ?>

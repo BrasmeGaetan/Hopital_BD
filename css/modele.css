@@ -12,6 +12,21 @@
   display: flex;
   justify-content: space-around;
 }
+.zone-inscription{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 800px;
+  margin-top: 2%;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding: 1%;
+  background-color: #5a5a61;
+  font-family: Graphik, sans-serif;
+  font-size: 18px;
+  color: #f6f6f6;
+  border-radius: 15px;
+}
 
 .page-menu{
   display: flex;
