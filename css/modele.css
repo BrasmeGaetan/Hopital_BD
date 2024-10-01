@@ -1,5 +1,5 @@
 .nav-bar {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(77, 69, 69);
   display: flex;
   align-items: center;
 }
@@ -16,6 +16,7 @@
 .page-menu{
   display: flex;
   justify-content: space-around;
+  background-color: #18181f;
 }
 
 .titre-livre-saisie{
@@ -350,7 +351,7 @@ body {
   background: rgb(31,104,105);
   background: linear-gradient(90deg, rgba(31,104,105,1) 0%, rgba(90,168,255,1) 81%);
   */
-  background-color: #000;
+  background-color: #18181f;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -358,12 +359,6 @@ body {
 }
 
 
-header {
-  background-color: #f5f5f50d;
-  font-family: Graphik, sans-serif;
-  font-size: 10px;
-  border-bottom: #2c3e50;
-}
 
 .nav-bar{
   flex: 5;
@@ -402,9 +397,16 @@ footer {
   margin-top: 10%;
 }
 
+header {
+  background-color: #f5f5f50d;
+  font-family: Graphik, sans-serif;
+  font-size: 15px;
+}
+
 header a {
   text-decoration: none;
   color: #c7b7a3;
+  font-size: 15px;
 }
 
 footer div p {

@@ -23,11 +23,9 @@
     </div>
     <div class="livres">
       <p class="livres-p">
-        <a href="./index.php?action=livres"> Livres </a>
+        <a href="./index.php?action=livres">Livres</a>
       </p>
-    <div class="deconnexion">
-      <p class="deconnexion-p"><a href="./index.php?action=deconnexion">Deconnexion</a></p>
-      <a href="./index.php?action=connexion&logout"></a>
+
     </div>
   </nav>
   </header>
