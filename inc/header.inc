@@ -9,7 +9,7 @@
   <nav class="nav-bar">
     <div class="Acceuil">
       <p class="Acceuil-p">
-        <a href="./index.php?action=defaut"> Acceuil </a>
+        <a href="./index.php?action=defaut">Acceuil</a>
       </p>
     </div>
     <div class="cookies">
