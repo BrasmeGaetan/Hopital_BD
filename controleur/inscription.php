@@ -10,20 +10,20 @@ $bdd = connexionBDD(); // Connexion à la base de données
 
 // Si la requête est de type POST (soumission du formulaire)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $pseudo = $_POST['pseudo'];
+    $nom = $_POST['nom'];
     $mdp = $_POST['mdp'];
 
     // Vérifier si le pseudo existe déjà
-    $requeteVerif = $bdd->prepare("SELECT COUNT(*) FROM employes WHERE pseudo = :pseudo");
-    $requeteVerif->execute(['pseudo' => $pseudo]);
+    $requeteVerif = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE nom = :nom");
+    $requeteVerif->execute(['nom' => $nom]);
     $exists = $requeteVerif->fetchColumn();
 
     if ($exists) {
         echo "Ce pseudo est déjà pris. Veuillez en choisir un autre.";
     } else {
         // Insertion du nouvel utilisateur
-        $requete = $bdd->prepare("INSERT INTO employes (pseudo, mdp) VALUES (:pseudo, :mdp)");
-        $result = $requete->execute(['pseudo' => $pseudo, 'mdp' => $mdp]);
+        $requete = $bdd->prepare("INSERT INTO utilisateurs (nom, mdp) VALUES (:nom, :mdp)");
+        $result = $requete->execute(['nom' => $nom, 'mdp' => $mdp]);
 
         if ($result) {
             echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";

@@ -196,15 +196,15 @@ function modifierLivre($bdd, $id, $titre,  $idgenre, $idauteur, $resumeLivre, $d
     $repReq->execute();
 }
 
-function getUser($bdd, $pseudo) {
-    $requete = $bdd->prepare("SELECT pseudo, mdp FROM employes WHERE pseudo = :pseudo");
-    $requete->execute(['pseudo' => $pseudo]);
+function getUser($bdd, $nom) {
+    $requete = $bdd->prepare("SELECT nom, mdp FROM utilisateurs WHERE nom = :nom");
+    $requete->execute(['nom' => $nom]);
     return $requete->fetch(PDO::FETCH_ASSOC); // Retourne les informations de l'utilisateur sous forme de tableau associatif
 }
 
-function userExists($bdd, $pseudo) {
-    $stmt = $bdd->prepare("SELECT COUNT(*) FROM employes WHERE pseudo = ?");
-    $stmt->execute([$pseudo]);
+function userExists($bdd, $nom) {
+    $stmt = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE nom = ?");
+    $stmt->execute([$nom]);
     return $stmt->fetchColumn() > 0; // Retourne true si le pseudo existe déjà
 }
 
