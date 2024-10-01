@@ -2,7 +2,7 @@
     <div class="accueil-body">
         <div>
             <form method="post" class="zone-tri">
-                <h1>Tri de la recherche</h1>
+                <h1>Recherche</h1>
                 <div class="critere-recherche">
                     <label for="critere-recherche">Critère de recherche</label>
                     <select name="critere-recherche" id="critere-recherche">
