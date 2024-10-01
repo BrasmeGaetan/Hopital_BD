@@ -131,7 +131,7 @@
 }
 
 .btn{
-  background-color: #2f27ce;
+  background-color: #f6f6f6;
   font-family: inter, ui-sans-serif;
   color: #f6f6f6
 }
@@ -145,10 +145,10 @@
   margin-left: 35%;
   margin-right: 35%;
   padding: 1%;
-  background-color: rgb(44, 43, 43);
+  background-color: #2f27ce;
   font-family: Graphik, sans-serif;
   font-size: 18px;
-  color: #c7b7a3;
+  color: #f6f6f6;
   border-radius: 15px;
 }
 
@@ -655,4 +655,8 @@ footer div p {
 
 .option{
   font-family: Graphik, sans-serif;
+}
+
+a{
+  color:#f6f6f6;
 }
