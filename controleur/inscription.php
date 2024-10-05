@@ -1,8 +1,6 @@
 <?php
 
 include "vue/vueInscription.php";
-
-
 include_once '../modele/mesFonctionsAccesBDD.php'; // Assurez-vous que le chemin est correct
 session_start(); // Démarre la session
 
@@ -10,24 +8,36 @@ $bdd = connexionBDD(); // Connexion à la base de données
 
 // Si la requête est de type POST (soumission du formulaire)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom = $_POST['nom'];
+    // Récupérer les données envoyées depuis le formulaire
+    $pseudo = $_POST['pseudo'];
+    $prenom = $_POST['prenom']; // Nouveau champ
+    $email = $_POST['email'];
+    $telephone = $_POST['telephone']; // Nouveau champ
     $mdp = $_POST['mdp'];
+    $role = 1; // Valeur par défaut pour le rôle
 
     // Vérifier si le pseudo existe déjà
-    $requeteVerif = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE nom = :nom");
-    $requeteVerif->execute(['nom' => $nom]);
+    $requeteVerif = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE pseudo = :pseudo");
+    $requeteVerif->execute(['pseudo' => $pseudo]);
     $exists = $requeteVerif->fetchColumn();
 
     if ($exists) {
         echo "Ce pseudo est déjà pris. Veuillez en choisir un autre.";
     } else {
-        // Insertion du nouvel utilisateur
-        $requete = $bdd->prepare("INSERT INTO utilisateurs (nom, mdp) VALUES (:nom, :mdp)");
-        $result = $requete->execute(['nom' => $nom, 'mdp' => $mdp]);
+        // Insertion du nouvel utilisateur avec toutes les informations
+        $requete = $bdd->prepare("INSERT INTO utilisateurs (pseudo, prenom, email, telephone, mdp, role) VALUES (:pseudo, :prenom, :email, :telephone, :mdp, :role)");
+        $result = $requete->execute([
+            'pseudo' => $pseudo,
+            'prenom' => $prenom,
+            'email' => $email,
+            'telephone' => $telephone,
+            'mdp' => $mdp,
+            'role' => $role // En utilisant la valeur par défaut 1
+        ]);
 
         if ($result) {
             echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-            header("Location: ../connexion.php"); // Redirection vers la page de connexion
+            header("controleur/connexion.php"); // Redirection vers la page de connexion
             exit();
         } else {
             echo "Erreur lors de l'inscription. Veuillez réessayer.";
@@ -35,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // Rediriger vers le formulaire d'inscription si ce n'est pas une requête POST
-
+    header("vue/vueInscription.php");
+    exit();
 }
 ?>
