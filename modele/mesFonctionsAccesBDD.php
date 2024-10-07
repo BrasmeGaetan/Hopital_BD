@@ -197,7 +197,7 @@ function modifierLivre($bdd, $id, $titre,  $idgenre, $idauteur, $resumeLivre, $d
 }
 
 function getUser($bdd, $pseudo) {
-    $requete = $bdd->prepare("SELECT pseudo, mdp FROM utilisateurs WHERE pseudo = :pseudo");
+    $requete = $bdd->prepare("SELECT pseudo, mdp, roles FROM utilisateurs WHERE pseudo = :pseudo");
     $requete->execute(['pseudo' => $pseudo]);
     
     $user = $requete->fetch(PDO::FETCH_ASSOC);
@@ -208,6 +208,10 @@ function getUser($bdd, $pseudo) {
     
     return $user;
 }
+
+
+
+
 
 function userExists($bdd, $pseudo) {
     $stmt = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE pseudo = ?");
