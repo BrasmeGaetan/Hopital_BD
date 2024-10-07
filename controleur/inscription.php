@@ -8,6 +8,12 @@ $bdd = connexionBDD(); // Connexion à la base de données
 
 // Si la requête est de type POST (soumission du formulaire)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Vérifier si la case des conditions d'utilisation est cochée
+    if (!isset($_POST['accept_conditions'])) {
+        echo "Vous devez accepter les conditions d'utilisation pour vous inscrire.";
+        exit();
+    }
+
     // Récupérer les données envoyées depuis le formulaire
     $pseudo = $_POST['pseudo'];
     $prenom = $_POST['prenom']; // Nouveau champ
