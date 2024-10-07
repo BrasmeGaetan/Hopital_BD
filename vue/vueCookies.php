@@ -37,6 +37,14 @@
             <h2>La conservations limitées de vos données</h2>
             Les données personnelles ne doivent être conserver indefiniment.
             Le délai de conservation des données <br> varient selon les finalitées prévues et selon les types de données
-            personnelles enregistrer. Dans notre cas <br> la durée de conservation d'un an 
+            personnelles enregistrer. Dans notre cas <br> la durée de conservation d'un an nous semble etre la plus correcte
+            dans le cadre des données nécessaires <br> a la creation d'un compte.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            Date de mise a jour : 07/10/2024
         </body>
     </div>
