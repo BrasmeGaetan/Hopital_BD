@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include_once 'modele/mesFonctionsAccesBDD.php';
-session_start(); // Démarre la session
+
 
 $bdd = connexionBDD(); // Connexion à la base de données
 
