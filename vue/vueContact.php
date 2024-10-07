@@ -1,5 +1,6 @@
 <section id="contact">
   <h2> Contactez-nous</h2>
+  <br>
   <p>Remplissez ce formulaire ci dessous pour nous contacter.</p>
   <form class="form_contact" method="post" enctype="text/plain">
     <label for="name">Nom :</label>

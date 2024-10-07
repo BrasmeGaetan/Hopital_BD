@@ -632,11 +632,12 @@ footer div p {
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #1a1846;
+  background-color: #2a2581;
   border-radius: 5px;
   color: white;
   border-radius: 15px;
 }
+
 
 .form_contact {
   display: grid;

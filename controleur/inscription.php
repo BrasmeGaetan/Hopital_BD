@@ -31,14 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Ce pseudo est déjà pris. Veuillez en choisir un autre.";
     } else {
         // Insertion du nouvel utilisateur avec toutes les informations
-        $requete = $bdd->prepare("INSERT INTO utilisateurs (pseudo, prenom, email, telephone, mdp, role) VALUES (:pseudo, :prenom, :email, :telephone, :mdp, :role)");
+        $requete = $bdd->prepare("INSERT INTO utilisateurs (pseudo, prenom, email, telephone, mdp, role, dateValid) VALUES (:pseudo, :prenom, :email, :telephone, :mdp, :role, :dateValid)");
         $result = $requete->execute([
             'pseudo' => $pseudo,
             'prenom' => $prenom,
             'email' => $email,
             'telephone' => $telephone,
             'mdp' => $mdp,
-            'role' => $role // En utilisant la valeur par défaut 1
+            'role' => $role,
+            'dateValid' => date("y-m-d")
         ]);
 
         if ($result) {
