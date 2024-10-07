@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 include_once 'modele/mesFonctionsAccesBDD.php';
 
-session_start(); // N'oublie pas d'initialiser la session
+session_start(); // Initialisation de la session
 
 $bdd = connexionBDD(); // Connexion à la base de données
 
@@ -19,7 +19,7 @@ if (isset($_GET["logout"])) {
     session_unset();
     session_destroy();
     echo "Déconnexion réussie.";
-    header("vue/vueConnexion.php"); // Redirection après déconnexion
+    include "vue/vueConnexion.php"; // Inclusion après déconnexion
     exit();
 }
 
@@ -29,25 +29,26 @@ if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
     
     // Affichage pour débogage
     var_dump($user); // Vérifier si le rôle est présent et correct
-    if ($user && $_POST['mdp'] === $user['mdp']) { // Comparaison simple des mots de passe en clair
+    if ($user && $_POST['mdp'] === $user['mdp']) { // Comparaison simple des mots de passe
         $_SESSION['valid'] = true;
         $_SESSION['roles'] = $user['roles']; // Stocker le rôle dans la session
         
         // Affichage des informations de session pour débogage
         var_dump($_SESSION);
         
-        // Redirection en fonction du rôle de l'utilisateur
+        // Redirection en fonction du rôle de l'utilisateur via includes
         if ($_SESSION['roles'] == 1) {
-            // Rediriger vers la page d'employé (gestion des livres)
-            header("vue/vueMenu.php");
+            // Inclure la page d'employé (gestion des livres)
+            include 'vue/vueMenu.php';
         } elseif ($_SESSION['roles'] == 2) {
-            // Rediriger vers la page de réservation de livres pour les patients
-            header("vue/vueConnexionPatient.php");
+            // Inclure la page de réservation de livres pour les patients
+            include 'vue/vueConnexionPatient.php';
         }
         
-        exit(); // Assurez-vous que le script s'arrête ici
+        exit(); // S'assurer que le script s'arrête ici
     } else {
         echo "Pseudo ou mot de passe incorrect.";
+        include "vue/vueConnexion.php"; // Réafficher la page de connexion en cas d'échec
     }
 }
 
@@ -57,6 +58,5 @@ if (isset($_SESSION['valid']) && $_SESSION['valid']) {
     $auteur = getAuteur($bdd)->fetchAll();
     include "vue/vueMenu.php";
 } else {
-    include "vue/vueConnexion.php";
+    include "vue/vueConnexion.php"; // Inclure la vue de connexion si non connecté
 }
-?>

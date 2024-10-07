@@ -1,3 +1,5 @@
+
+
 <div class="page-menu">
     <form action="./index.php?action=menu&choix=<?php echo 1 ?>" class="zone-menu" method="post" enctype="multipart/form-data">
         <h1>Ajouter un livre</h1>
