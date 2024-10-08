@@ -12,7 +12,6 @@ $livres = getLivreFromTitreGenreAuteurDate($Connexion, null, null, null, null, n
 <div class="zone-inscription">
     <h1>Emprunter un livre</h1>
     <form action="./index.php?action=emprunt" method="POST">
-        <!-- Titre du livre -->
         <label for="livre">Titre du livre :</label>
         <select id="livre" name="livre" required>
             <option value="">-- Veuillez choisir un livre --</option>
@@ -20,11 +19,8 @@ $livres = getLivreFromTitreGenreAuteurDate($Connexion, null, null, null, null, n
                 <option value="<?= htmlspecialchars($livre['idlivre']) ?>"><?= htmlspecialchars($livre['titre']) ?> - <?= htmlspecialchars($livre['nom']) ?> <?= htmlspecialchars($livre['prenom']) ?></option>
             <?php endforeach; ?>
         </select>
-
-        <!-- Date d'emprunt -->
         <label for="date">Date d'emprunt :</label>
         <input type="date" id="date" name="date" value="<?= date('Y-m-d') ?>" readonly>
-
         <input type="submit" value="Emprunter">
         <a href="./index.php?action=inscription">Voir tous les emprunts : </a>
     </form>
@@ -34,11 +30,14 @@ $livres = getLivreFromTitreGenreAuteurDate($Connexion, null, null, null, null, n
 <div class="zone-retour">
     <h1>Retourner un livre</h1>
     <form action="./index.php?action=retour" method="POST">
-        <label for="emprunt_id">ID de l'emprunt :</label>
-        <input type="number" id="emprunt_id" name="emprunt_id" required>
-
+        <label for="emprunt_id">Sélectionnez un emprunt :</label>
+        <select id="emprunt_id" name="emprunt_id" required>
+            <option value="">-- Veuillez choisir un emprunt --</option>
+            <?php foreach ($emprunts as $emprunt): ?>
+                <option value="<?= htmlspecialchars($emprunt['id']) ?>"><?= htmlspecialchars($emprunt['titre']) ?></option>
+            <?php endforeach; ?>
+        </select>
         <input type="submit" value="Retourner le livre">
     </form>
 </div>
-
 </body>

@@ -10,6 +10,15 @@ if (!isset($_SESSION['valid']) || !$_SESSION['valid']) {
 
 $bdd = connexionBDD();
 
+// Récupérer l'utilisateur connecté
+$utilisateur_id = $_SESSION['utilisateur_id'];
+echo var_dump($utilisateur_id);
+
+// Récupérer les emprunts de l'utilisateur
+$emprunts_query = $bdd->prepare("SELECT id, titre FROM emprunts WHERE utilisateur_id = :utilisateur_id AND date_retour_effective IS NULL");
+$emprunts_query->execute(['utilisateur_id' => $utilisateur_id]);
+$emprunts = $emprunts_query->fetchAll(PDO::FETCH_ASSOC);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $emprunt_id = $_POST['emprunt_id'];
     $date_retour_effective = date('Y-m-d');
@@ -27,5 +36,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Vous pouvez inclure la vue appropriée ici
 include 'vue/vueConnexionPatient.php';

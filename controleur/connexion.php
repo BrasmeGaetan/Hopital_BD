@@ -12,6 +12,8 @@ if (!$bdd) {
 // Gestion de la déconnexion
 if (isset($_GET["logout"])) {
     unset($_SESSION['valid']);
+    unset($_SESSION['roles']);
+    unset($_SESSION['utilisateur_id']);
     session_unset();
     session_destroy();
     echo "Déconnexion réussie.";
@@ -25,6 +27,7 @@ if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
     if ($user && password_verify($_POST['mdp'], $user['mdp'])) {
         $_SESSION['valid'] = true;
         $_SESSION['roles'] = $user['roles'];
+        $_SESSION['utilisateur_id'] = $user['id'];
 
         // Redirection en fonction du rôle de l'utilisateur
         if ($_SESSION['roles'] == 1) {
