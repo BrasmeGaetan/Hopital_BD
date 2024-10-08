@@ -1,5 +1,7 @@
 <?php
 
-$bdd = 'mysql:host=localhost;dbname=dblogin5265';
-$user = 'login5265';
-$password = 'FEqfhWBHpwXSCzn';
+$bdd = 'mysql:host=localhost;dbname=dblogin5261';
+$user = 'login5261';
+$password = 'hvmFxYNbklFlglc';
+$host = 'localhost';
+$dbname = 'dblogin5261';
