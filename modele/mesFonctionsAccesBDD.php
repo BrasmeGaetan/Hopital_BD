@@ -219,4 +219,17 @@ function userExists($bdd, $pseudo) {
     return $stmt->fetchColumn() > 0; // Retourne true si le pseudo existe déjà
 }
 
+function backup($bdd, $host,$user, $password){
+    $requete_backup = $bdd->prepare("mysqldump --opt --host=$host --user=$user --password=$password dblogin5261 > backup");
+    $output = null;
+    $return_var = null;
+    exec($requete_backup, $output, $return_var);
+    
+    if($return_var == 0){
+        echo "Backup réussie !";
+    }else{
+        echo "Erreur lors du backup";
+    }
+}
+
 
