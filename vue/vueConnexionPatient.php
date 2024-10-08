@@ -48,6 +48,8 @@ $livres = getLivreFromTitreGenreAuteurDate($Connexion, null, null, null, null, n
             <input type="date" id="dateRetour" name="dateRetour" required>
 
             <input type="submit" value="Emprunter">
+
+            <a href="./index.php?action=inscription">Voir tous les emprunts : </a>
         </form>
     </div>
 </body>

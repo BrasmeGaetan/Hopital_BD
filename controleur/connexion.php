@@ -1,5 +1,4 @@
 <?php
-
 include_once 'modele/mesFonctionsAccesBDD.php';
 
 session_start(); // Initialisation de la session
@@ -20,20 +19,16 @@ if (isset($_GET["logout"])) {
     exit();
 }
 
-// Gestion de la connexion
 if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
     $user = getUser($bdd, $_POST['pseudo']);
-    
-    // Affichage pour débogage
 
-    if ($user && $_POST['mdp'] === $user['mdp']) { // Comparaison simple des mots de passe
+    if ($user && password_verify($_POST['mdp'], $user['mdp'])) {
         $_SESSION['valid'] = true;
-        $_SESSION['roles'] = $user['roles']; // Stocker le rôle dans la session
-        
-        
-        // Redirection en fonction du rôle de l'utilisateur via includes
+        $_SESSION['roles'] = $user['roles'];
+
+        // Redirection en fonction du rôle de l'utilisateur
         if ($_SESSION['roles'] == 1) {
-            // Inclure la page d'employé (gestion des livres)
+            // Inclure la page d'employé
             $genre = getGenre($bdd)->fetchAll();
             $auteur = getAuteur($bdd)->fetchAll();
             include 'vue/vueMenu.php';
@@ -41,7 +36,7 @@ if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
             // Inclure la page de réservation de livres pour les patients
             include 'vue/vueConnexionPatient.php';
         }
-        
+
         exit(); // S'assurer que le script s'arrête ici
     } else {
         echo "Pseudo ou mot de passe incorrect.";
@@ -53,8 +48,8 @@ if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
 if (isset($_SESSION['valid']) && $_SESSION['valid']) {
     $genre = getGenre($bdd)->fetchAll();
     $auteur = getAuteur($bdd)->fetchAll();
-    echo "wfafwa";
     header("Refresh:0; url=./index.php?action=menu");
 } else {
     include "vue/vueConnexion.php"; // Inclure la vue de connexion si non connecté
 }
+?>

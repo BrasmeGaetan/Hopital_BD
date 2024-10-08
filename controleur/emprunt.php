@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'modele/mesFonctionsAccesBDD.php';
-echo "wuafbnaf";
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['valid']) || !$_SESSION['valid']) {
     echo "Vous devez être connecté pour emprunter un livre.";
@@ -14,7 +13,6 @@ $bdd = connexionBDD();
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    var_dump($_POST); // Pour voir les données soumises
 
     // Récupérer les données du formulaire
     $livre_id = $_POST['livre'];
