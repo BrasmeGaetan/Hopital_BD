@@ -12,7 +12,7 @@
           <a href="./index.php?action=defaut">Accueil</a>
         </div>
         <div class="nav-item">
-          <a href="./index.php?action=cookies">Cookies</a>
+          <a href="./index.php?action=cookies">Confidentialite</a>
         </div>
         <div class="nav-item">
           <a href="./index.php?action=contact">Contact</a>

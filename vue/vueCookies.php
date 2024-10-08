@@ -23,7 +23,7 @@
             Vos données seront stockées pour une durée d'un an a condition qu'il n'y ait pas de demande <br>
             de suppression de données (droit a l'oublie). Vos informations sont chiffrer pour éviter aux <br> pirates
             de pouvoir lire vos identifiants, mots de passe, mail en clair dans notre base de données.<br>
-            Ainsi nous nous efforcons de minimiser les risque de vols de données personnelles.
+            Ainsi nous nous efforcons de minimiser les risques de vols de données personnelles.
             
             <h2>Vos droits</h2>
             Cependant, vous avez le droit a l'oublie ce qui veut dire que si vous le demandez
