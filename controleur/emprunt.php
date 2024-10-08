@@ -1,12 +1,7 @@
 <?php
 session_start();
 include_once 'modele/mesFonctionsAccesBDD.php';
-
-// Afficher les erreurs
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+echo "wuafbnaf";
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['valid']) || !$_SESSION['valid']) {
     echo "Vous devez être connecté pour emprunter un livre.";
@@ -51,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Vérifier si l'insertion a réussi
         if ($success) {
             echo "Livre emprunté avec succès !";
-            include 'vue/vueMenu.php'; // Inclure la vue du menu après un emprunt réussi
+            header("Refresh:0; url=./index.php?action=livres");
             exit();
         } else {
             echo "Une erreur est survenue lors de l'emprunt du livre.";
@@ -61,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Inclure la vue du menu même en cas d'erreur
-    include 'vue/vueMenu.php'; 
+    include 'vue/vueConnexionPatient.php'; 
     exit();
 }
 
 // Si le formulaire n'est pas soumis, afficher la page d'emprunt
-include 'vue/vueEmpruntLivre.php';
+include 'vue/vueConnexionPatient.php';
 ?>

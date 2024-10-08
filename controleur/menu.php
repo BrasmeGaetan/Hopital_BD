@@ -81,7 +81,7 @@ if ($_GET["choix"] == 1) {
 // Récupération des données pour les formulaires (liste des auteurs, genres)
 $genre = getGenre($Connexion)->fetchAll();
 $auteur = getAuteur($Connexion)->fetchAll();
-
+echo var_dump($genre);
 // Inclusion de la vue
 include "vue/vueMenu.php";
 ?>
