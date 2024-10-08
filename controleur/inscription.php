@@ -1,29 +1,30 @@
 <?php
-
 include "vue/vueInscription.php";
-include_once '../modele/mesFonctionsAccesBDD.php'; // Assurez-vous que le chemin est correct
+include_once '../modele/mesFonctionsAccesBDD.php'; 
 session_start(); // Démarre la session
 
 $bdd = connexionBDD(); // Connexion à la base de données
 
-// Si la requête est de type POST (soumission du formulaire)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Vérifier si la case des conditions d'utilisation est cochée
     if (!isset($_POST['accept_conditions'])) {
         echo "Vous devez accepter les conditions d'utilisation pour vous inscrire.";
         exit();
     }
 
-    // Récupérer les données envoyées depuis le formulaire
     $pseudo = $_POST['pseudo'];
-    $prenom = $_POST['prenom']; // Nouveau champ
+    $prenom = $_POST['prenom'];
     $email = $_POST['email'];
-    $telephone = $_POST['telephone']; // Nouveau champ
+    $telephone = $_POST['telephone'];
     $mdp = $_POST['mdp'];
-    $roles = 2; // Valeur par défaut pour le rôle
-    $date_validation = date('m/d/Y'); // Récupérer la date actuelle au format MM/DD/YYYY
+    $roles = 2;
+    $date_validation = date('m/d/Y');
 
-    // Vérifier si le pseudo existe déjà
+    // Vérification de la complexité du mot de passe
+    if (strlen($mdp) < 8 || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $mdp)) {
+        echo "Le mot de passe doit comporter au moins 8 caractères et inclure un caractère spécial.";
+        exit();
+    }
+
     $requeteVerif = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE pseudo = :pseudo");
     $requeteVerif->execute(['pseudo' => $pseudo]);
     $exists = $requeteVerif->fetchColumn();
@@ -31,28 +32,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($exists) {
         echo "Ce pseudo est déjà pris. Veuillez en choisir un autre.";
     } else {
-        // Insertion du nouvel utilisateur avec toutes les informations
-        $requete = $bdd->prepare("INSERT INTO utilisateurs (pseudo, prenom, email, telephone, mdp, role) VALUES (:pseudo, :prenom, :email, :telephone, :mdp, :role)");
+        // Hachage du mot de passe
+        $hashedMdp = password_hash($mdp, PASSWORD_DEFAULT);
+
+        // Insertion du nouvel utilisateur
+        $requete = $bdd->prepare("INSERT INTO utilisateurs (pseudo, prenom, email, telephone, mdp, roles, date_validation) VALUES (:pseudo, :prenom, :email, :telephone, :mdp, :roles, :date_validation)");
         $result = $requete->execute([
             'pseudo' => $pseudo,
             'prenom' => $prenom,
             'email' => $email,
             'telephone' => $telephone,
-            'mdp' => $mdp,
-            'role' => $role // En utilisant la valeur par défaut 1
+            'mdp' => $hashedMdp,
+            'roles' => $roles,
+            'date_validation' => $date_validation
         ]);
 
         if ($result) {
             echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-            header("controleur/connexion.php"); // Redirection vers la page de connexion
+            include 'controleur/connexion.php'; // Redirection vers la page de connexion
             exit();
         } else {
             echo "Erreur lors de l'inscription. Veuillez réessayer.";
         }
     }
 } else {
-    // Rediriger vers le formulaire d'inscription si ce n'est pas une requête POST
-    header("vue/vueInscription.php");
     exit();
 }
 ?>
