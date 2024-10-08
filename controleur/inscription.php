@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $telephone = $_POST['telephone']; // Nouveau champ
     $mdp = $_POST['mdp'];
-    $role = 1; // Valeur par défaut pour le rôle
+    $roles = 2; // Valeur par défaut pour le rôle
+    $date_validation = date('m/d/Y'); // Récupérer la date actuelle au format MM/DD/YYYY
 
     // Vérifier si le pseudo existe déjà
     $requeteVerif = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE pseudo = :pseudo");
@@ -31,15 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Ce pseudo est déjà pris. Veuillez en choisir un autre.";
     } else {
         // Insertion du nouvel utilisateur avec toutes les informations
-        $requete = $bdd->prepare("INSERT INTO utilisateurs (pseudo, prenom, email, telephone, mdp, role, dateValid) VALUES (:pseudo, :prenom, :email, :telephone, :mdp, :role, :dateValid)");
+        $requete = $bdd->prepare("INSERT INTO utilisateurs (pseudo, prenom, email, telephone, mdp, role) VALUES (:pseudo, :prenom, :email, :telephone, :mdp, :role)");
         $result = $requete->execute([
             'pseudo' => $pseudo,
             'prenom' => $prenom,
             'email' => $email,
             'telephone' => $telephone,
             'mdp' => $mdp,
-            'role' => $role,
-            'dateValid' => date("y-m-d")
+            'role' => $role // En utilisant la valeur par défaut 1
         ]);
 
         if ($result) {

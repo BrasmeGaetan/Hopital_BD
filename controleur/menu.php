@@ -1,5 +1,18 @@
 <?php
+session_start(); // Démarre la session pour vérifier les variables de session
+
 include_once 'modele/mesFonctionsAccesBDD.php';
+
+// Vérification si l'utilisateur est connecté et a le rôle 1 (par exemple, un administrateur ou employé)
+if (!isset($_SESSION['valid']) || $_SESSION['valid'] !== true || $_SESSION['roles'] != 1) {
+    // Si l'utilisateur n'a pas le rôle approprié, on affiche un message et on redirige vers la page de connexion
+    echo "Accès non autorisé.";
+    include "vue/vueConnexion.php";
+    exit(); // Stoppe l'exécution du script
+}
+
+$Connexion = connexionBDD();
+
 if ($_GET["choix"] == 1) {
     if (!empty($_POST['zone-saisie-titre']) && !empty($_POST['liste-auteur-livre']) && !empty($_POST['liste-genre-livre']) && !empty($_POST['zone-saisie-date']) && !empty($_POST['zone-cotation']) && !empty($_POST["livre-resume"]) && !empty($_FILES["zone-image"]["name"])) {
         $target_dir = "img/";
@@ -13,10 +26,10 @@ if ($_GET["choix"] == 1) {
             $resumeLivre = $_POST['livre-resume'];
             $idauteur = $_POST['liste-auteur-livre'];
             $idgenre = $_POST['liste-genre-livre'];
-            if (!move_uploaded_file($_FILES["zone-image"]["tmp_name"],$target_file)) {
+            if (!move_uploaded_file($_FILES["zone-image"]["tmp_name"], $target_file)) {
                 echo '<script>alert("Upload image erreur")</script>';
-            }else{
-                ajouterLivre(connexionBDD(), $titre,  $idgenre, $idauteur, $resumeLivre, $datePublication, $cotation, $target_file);
+            } else {
+                ajouterLivre($Connexion, $titre,  $idgenre, $idauteur, $resumeLivre, $datePublication, $cotation, $target_file);
             }
         } else {
             echo '<script>alert("Image erreur")</script>';
@@ -33,7 +46,7 @@ if ($_GET["choix"] == 1) {
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $check = getimagesize($_FILES["zone-image-update"]["tmp_name"]);
             if ($check !== false) {
-                if (!move_uploaded_file($_FILES["zone-image-update"]["tmp_name"],$target_file)) {
+                if (!move_uploaded_file($_FILES["zone-image-update"]["tmp_name"], $target_file)) {
                     echo '<script>alert("Upload erreur")</script>';
                 }
             } else {
@@ -47,15 +60,15 @@ if ($_GET["choix"] == 1) {
         $resumeLivre = $_POST['livre-resume-update'];
         $idauteur = $_POST['liste-auteur-livre-update'];
         $idgenre = $_POST['liste-genre-livre-update'];
-        modifierLivre(connexionBDD(),$id, $titre,  $idgenre, $idauteur, $resumeLivre, $datePublication, $cotation, $target_file);
+        modifierLivre($Connexion, $id, $titre,  $idgenre, $idauteur, $resumeLivre, $datePublication, $cotation, $target_file);
     } else {
         echo '<script>alert("Veuillez renseigner un identifiant de livre")</script>';
     } 
 } else if ($_GET["choix"] == 3) {
     if (!empty($_POST['id-livre-a-supprimer'])) {
         $idLivreASupprimer = $_POST['id-livre-a-supprimer'];
-        $suppressionReussie = supprimerLivre(connexionBDD(), $idLivreASupprimer);
-        if ($supprssionReussie) {
+        $suppressionReussie = supprimerLivre($Connexion, $idLivreASupprimer);
+        if ($suppressionReussie) {
             echo '<script>alert("Livre supprimé avec succès !")</script>';
         } else {
             echo '<script>alert("Erreur lors de la suppression du livre.")</script>';
@@ -65,9 +78,10 @@ if ($_GET["choix"] == 1) {
     }
 }
 
-
-$Connexion = connexionBDD();
+// Récupération des données pour les formulaires (liste des auteurs, genres)
 $genre = getGenre($Connexion)->fetchAll();
 $auteur = getAuteur($Connexion)->fetchAll();
-
+echo var_dump($genre);
+// Inclusion de la vue
 include "vue/vueMenu.php";
+?>

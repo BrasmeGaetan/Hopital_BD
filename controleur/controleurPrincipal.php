@@ -2,6 +2,7 @@
 
 function controleurPrincipal($action){
     $lesActions = array();
+    $lesActions["livre"] = "livre.php";
     $lesActions["defaut"] = "accueil.php";
     $lesActions["chercher"] = "chercher.php";
     $lesActions["livres"] = "livres.php";
@@ -10,6 +11,7 @@ function controleurPrincipal($action){
     $lesActions["connexion"] = "connexion.php";
     $lesActions["menu"] = "menu.php";
     $lesActions["inscription"] = "inscription.php";
+    $lesActions["emprunt"] = "emprunt.php";
 
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];
