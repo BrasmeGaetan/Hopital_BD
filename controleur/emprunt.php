@@ -15,11 +15,14 @@ $bdd = connexionBDD();
 
 // Vérifier si le formulaire est soumis
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Afficher les données reçues pour débogage
-    var_dump($_POST); 
+    var_dump($_POST); // Pour le débogage
 
-    // Récupérer l'ID du livre
     $livre_id = $_POST['livre'];
+
+    if (empty($livre_id)) {
+        echo "Veuillez sélectionner un livre.";
+        exit();
+    }
 
     // Dates d'emprunt
     $date_emprunt = date('Y-m-d');
@@ -30,24 +33,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $livre_query->execute(['livre_id' => $livre_id]);
     $livre_data = $livre_query->fetch(PDO::FETCH_ASSOC);
 
-    // Vérifier si le livre existe
     if ($livre_data) {
         $genre = $livre_data['genre'];
         $auteur = $livre_data['auteur'];
         $titre = $livre_data['titre'];
-        
 
-        // Récupérer l'utilisateur connecté
         $utilisateur_id = $_SESSION['utilisateur_id'];
 
-        // Préparer la requête d'insertion
+        // Vérification de l'emprunt existant
+        $verif_query = $bdd->prepare("SELECT COUNT(*) FROM emprunts WHERE utilisateur_id = :utilisateur_id AND titre = :titre AND date_retour_effective IS NULL");
+        $verif_query->execute(['utilisateur_id' => $utilisateur_id, 'titre' => $titre]);
+        $emprunt_existant = $verif_query->fetchColumn();
+
+        if ($emprunt_existant > 0) {
+            echo "Vous avez déjà emprunté ce livre.";
+            exit();
+        }
+
+        // Insertion de l'emprunt
         $requete = $bdd->prepare("
             INSERT INTO emprunts (utilisateur_id, titre, date_emprunt, genre, auteur, date_retour_prevue, date_retour_effective)
             VALUES (:utilisateur_id, :titre, :date_emprunt, :genre, :auteur, :date_retour_prevue, NULL)
         ");
 
         try {
-            // Exécuter la requête d'insertion
             $success = $requete->execute([
                 'utilisateur_id' => $utilisateur_id,
                 'titre' => $titre,
@@ -59,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($success) {
                 echo "Livre emprunté avec succès !";
-                header("Refresh:0; url=./index.php?action=livres");
+                header("Location: ./index.php?action=livres");
                 exit();
             } else {
                 echo "Une erreur est survenue lors de l'emprunt du livre.";
@@ -71,6 +80,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Livre non trouvé.";
     }
 }
-
 
 include 'vue/vueConnexionPatient.php';

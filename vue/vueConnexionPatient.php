@@ -6,6 +6,12 @@ $Connexion = connexionBDD();
 $genres = getGenre($Connexion)->fetchAll(PDO::FETCH_ASSOC);
 $auteurs = getAuteur($Connexion)->fetchAll(PDO::FETCH_ASSOC);
 $livres = getLivreFromTitreGenreAuteurDate($Connexion, null, null, null, null, null, null);
+
+// Récupérer les emprunts de l'utilisateur (ajouté pour le retour)
+$utilisateur_id = $_SESSION['utilisateur_id'];
+$emprunts_query = $Connexion->prepare("SELECT id, titre FROM emprunts WHERE utilisateur_id = :utilisateur_id AND date_retour_effective IS NULL");
+$emprunts_query->execute(['utilisateur_id' => $utilisateur_id]);
+$emprunts = $emprunts_query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <body>
@@ -22,7 +28,7 @@ $livres = getLivreFromTitreGenreAuteurDate($Connexion, null, null, null, null, n
         <label for="date">Date d'emprunt :</label>
         <input type="date" id="date" name="date" value="<?= date('Y-m-d') ?>" readonly>
         <input type="submit" value="Emprunter">
-        <a href="./index.php?action=inscription">Voir tous les emprunts : </a>
+        <a href="./index.php?action=inscription">Voir tous les emprunts</a>
     </form>
 </div>
 
@@ -33,9 +39,13 @@ $livres = getLivreFromTitreGenreAuteurDate($Connexion, null, null, null, null, n
         <label for="emprunt_id">Sélectionnez un emprunt :</label>
         <select id="emprunt_id" name="emprunt_id" required>
             <option value="">-- Veuillez choisir un emprunt --</option>
-            <?php foreach ($emprunts as $emprunt): ?>
-                <option value="<?= htmlspecialchars($emprunt['id']) ?>"><?= htmlspecialchars($emprunt['titre']) ?></option>
-            <?php endforeach; ?>
+            <?php if (!empty($emprunts)): ?>
+                <?php foreach ($emprunts as $emprunt): ?>
+                    <option value="<?= htmlspecialchars($emprunt['id']) ?>"><?= htmlspecialchars($emprunt['titre']) ?></option>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <option value="">Aucun emprunt trouvé</option>
+            <?php endif; ?>
         </select>
         <input type="submit" value="Retourner le livre">
     </form>
