@@ -197,7 +197,7 @@ function modifierLivre($bdd, $id, $titre,  $idgenre, $idauteur, $resumeLivre, $d
 }
 
 function getUser($bdd, $pseudo) {
-    $requete = $bdd->prepare("SELECT pseudo, mdp, roles FROM utilisateurs WHERE pseudo = :pseudo");
+    $requete = $bdd->prepare("SELECT pseudo, mdp, roles, id FROM utilisateurs WHERE pseudo = :pseudo");
     $requete->execute(['pseudo' => $pseudo]);
     
     $user = $requete->fetch(PDO::FETCH_ASSOC);
@@ -218,5 +218,22 @@ function userExists($bdd, $pseudo) {
     $stmt->execute([$pseudo]);
     return $stmt->fetchColumn() > 0; // Retourne true si le pseudo existe déjà
 }
+
+function backup($bdd, $host,$user, $password){
+    $requete_backup = $bdd->prepare("mysqldump --opt --host=$host --user=$user --password=$password dblogin5261 > backup");
+    $output = null;
+    $return_var = null;
+    exec($requete_backup, $output, $return_var);
+    
+    if($return_var == 0){
+        echo "Backup réussie !";
+    }else{
+        echo "Erreur lors du backup";
+    }
+}
+
+/* SELECT emprunts.id,livre.titre,utilisateurs.pseudo,date_emprunt,date_retour_prevue from emprunts JOIN livre.idlivre = emprunt.idlivre 
+Join utilisateurs ON utilisateurs.id = emprunt.utilisateur_id 
+where DATE_ADD(dateEmprunt, Interval 26 DAY) <= '2024-10-10' AND date_retour_effective is NULL; */
 
 

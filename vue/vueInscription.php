@@ -8,7 +8,7 @@
             <input type="email" name="email" placeholder="Email" required>
             <input type="tel" name="telephone" placeholder="Numéro de téléphone" required>
             <input type="password" name="mdp" placeholder="Mot de passe" required>
-            <input type="hidden" name="role" value="1"> 
+            <input type="hidden" name="role" value="2"> 
 
             
             <div class="conditions-container">

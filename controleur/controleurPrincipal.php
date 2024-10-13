@@ -12,6 +12,7 @@ function controleurPrincipal($action){
     $lesActions["menu"] = "menu.php";
     $lesActions["inscription"] = "inscription.php";
     $lesActions["emprunt"] = "emprunt.php";
+    $lesActions["retour"] = "retour.php";
 
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];
