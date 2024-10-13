@@ -81,11 +81,14 @@ if ($_GET["choix"] == 1) {
         $delai = intval($_POST['delai_emprunt']);
         $date_limite = date('Y-m-d', strtotime("-$delai days"));
 
-        // Récupérer les emprunts non retournés depuis la date limite
+        // Récupérer les emprunts non retournés depuis la date limite avec la nouvelle requête
         $query = $Connexion->prepare("
-            SELECT * FROM emprunts
-            WHERE date_retour_effective IS NULL
-            AND date_emprunt < :date_limite
+            SELECT emprunts.id, livre.titre, utilisateurs.pseudo, date_emprunt, date_retour_prevue
+            FROM emprunts
+            JOIN livre ON livre.idlivre = emprunts.idlivre
+            JOIN utilisateurs ON utilisateurs.id = emprunts.utilisateur_id
+            WHERE DATE_ADD(date_emprunt, INTERVAL 26 DAY) <= :date_limite
+            AND date_retour_effective IS NULL
         ");
         $query->execute(['date_limite' => $date_limite]);
         $emprunts_non_retournes = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -95,7 +98,7 @@ if ($_GET["choix"] == 1) {
             echo "<h2>Emprunts non retournés :</h2>";
             echo "<ul>";
             foreach ($emprunts_non_retournes as $emprunt) {
-                echo "<li>{$emprunt['titre']} - Emprunté le : {$emprunt['date_emprunt']}</li>";
+                echo "<li>{$emprunt['titre']} - Emprunté par : {$emprunt['pseudo']} le : {$emprunt['date_emprunt']}</li>";
             }
             echo "</ul>";
         } else {

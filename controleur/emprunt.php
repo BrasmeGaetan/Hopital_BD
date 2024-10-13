@@ -1,8 +1,8 @@
 <?php
 
-
 session_start();
 include_once 'modele/mesFonctionsAccesBDD.php';
+
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['valid']) || !$_SESSION['valid']) {
     echo "Vous devez être connecté pour emprunter un livre.";
@@ -41,7 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $utilisateur_id = $_SESSION['utilisateur_id'];
 
         // Vérification de l'emprunt existant
-        $verif_query = $bdd->prepare("SELECT COUNT(*) FROM emprunts WHERE utilisateur_id = :utilisateur_id AND titre = :titre AND date_retour_effective IS NULL");
+        $verif_query = $bdd->prepare("
+            SELECT COUNT(*) 
+            FROM emprunts 
+            WHERE utilisateur_id = :utilisateur_id 
+            AND titre = :titre 
+            AND date_retour_effective IS NULL
+        ");
         $verif_query->execute(['utilisateur_id' => $utilisateur_id, 'titre' => $titre]);
         $emprunt_existant = $verif_query->fetchColumn();
 
@@ -50,15 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        // Insertion de l'emprunt
+        // Insertion de l'emprunt avec l'ajout de idlivre
         $requete = $bdd->prepare("
-            INSERT INTO emprunts (utilisateur_id, titre, date_emprunt, genre, auteur, date_retour_prevue, date_retour_effective)
-            VALUES (:utilisateur_id, :titre, :date_emprunt, :genre, :auteur, :date_retour_prevue, NULL)
+            INSERT INTO emprunts (utilisateur_id, idlivre, titre, date_emprunt, genre, auteur, date_retour_prevue, date_retour_effective)
+            VALUES (:utilisateur_id, :idlivre, :titre, :date_emprunt, :genre, :auteur, :date_retour_prevue, NULL)
         ");
 
         try {
             $success = $requete->execute([
                 'utilisateur_id' => $utilisateur_id,
+                'idlivre' => $livre_id,
                 'titre' => $titre,
                 'date_emprunt' => $date_emprunt,
                 'genre' => $genre,
