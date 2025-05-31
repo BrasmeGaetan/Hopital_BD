@@ -1,6 +1,6 @@
 <?php
 include "vue/vueInscription.php";  // Inclut la vue pour l'inscription
-include_once '../modele/mesFonctionsAccesBDD.php';  // Fichier pour la connexion à la base de données
+include_once 'modele/mesFonctionsAccesBDD.php';  // Fichier pour la connexion à la base de données
 session_start();  // Démarre la session
 
 $bdd = connexionBDD();  // Connexion à la base de données
