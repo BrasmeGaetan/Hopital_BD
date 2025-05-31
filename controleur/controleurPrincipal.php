@@ -13,6 +13,7 @@ function controleurPrincipal($action){
     $lesActions["inscription"] = "inscription.php";
     $lesActions["emprunt"] = "emprunt.php";
     $lesActions["retour"] = "retour.php";
+    $lesActions["oubli"] = "oubli.php";
 
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];

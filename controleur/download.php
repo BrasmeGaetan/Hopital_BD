@@ -26,5 +26,4 @@ if ($_SESSION['loginName'] != null){
    include "./vue/vueTelechargerDonnees.php";
 
 }
-
 ?>

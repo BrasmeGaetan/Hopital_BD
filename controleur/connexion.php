@@ -57,6 +57,6 @@ if (isset($_SESSION['valid']) && $_SESSION['valid']) {
             
         }
     }
-    include "vue/vueConnexion.php"; // Inclure la vue de connexion si non connecté
+    include "vue/vueConnexion.php"; 
 }
 ?>

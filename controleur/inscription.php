@@ -52,17 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         if ($result) {
-            // Si l'insertion réussit, message de succès et redirection vers la connexion
             echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-            include 'controleur/connexion.php';  // Redirection vers la page de connexion
+            include 'controleur/connexion.php'; 
             exit();
         } else {
-            // Si une erreur survient lors de l'insertion
             echo "Erreur lors de l'inscription. Veuillez réessayer.";
         }
     }
 } else {
-    // Si le script est accédé sans soumission POST, on arrête le script
     exit();
 }
 ?>
