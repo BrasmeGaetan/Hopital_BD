@@ -105,7 +105,6 @@
             </div>
         </form>
     </div>
-
     <div class="zone-menu-ext-cont">
         <form action="./index.php?action=menu&choix=4" method="post">
             <h1>Rechercher les emprunts non retournés</h1>
@@ -118,6 +117,32 @@
             </div>
         </form>
     </div>
+    <div class="zone-menu">
+    <nav>
+        <ul>
+            <li><a href="./index.php?action=accueil">Accueil</a></li>
+            <li><a href="./index.php?action=livres">Livres</a></li>
+            <li><a href="./index.php?action=emprunts">Mes emprunts</a></li>
+            <li><a href="./index.php?action=profil">Mon Profil</a></li>
+            
+            <?php if (isset($_SESSION['utilisateur_id'])): ?>
+                <li>
+                    <form action="./index.php?action=deconnexion" method="post">
+                        <button type="submit">Déconnexion</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="./index.php?action=oubli" method="post">
+                        <button type="submit">Droit à l'oubli</button>
+                    </form>
+                </li>
+            <?php else: ?>
+                <li><a href="./index.php?action=connexion">Connexion</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+</div>
+
 </div>
 
 

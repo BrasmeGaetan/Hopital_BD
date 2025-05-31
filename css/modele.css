@@ -700,14 +700,13 @@ footer div p {
 }
 
 .cookies {
-
   border-radius: 15px;
   color: #f6f6f6;
   font-family: graphik, sans-serif;
   margin-top: 5%;
   margin-left: 10%;
-  margin-right: 10%;
-  background-color: #2a2581;
+  margin-right: 15%;
+  background-color: #1b158b;
   font-size: 18px;
   flex-wrap: wrap;
   width: fit-content;
@@ -778,5 +777,18 @@ header .nav-item a {
   color: white;
 }
 
+.zone-menu-ext-cont{
+  border-radius: 15px;
+  color: #f6f6f6;
+  font-family: graphik, sans-serif;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #2a2581;
+  font-size: 18px;
+  flex-wrap: wrap;
+  width: fit-content;
+  padding: 1%;
+}
 
 

@@ -258,3 +258,33 @@ Join utilisateurs ON utilisateurs.id = emprunt.utilisateur_id
 where DATE_ADD(dateEmprunt, Interval 26 DAY) <= '2024-10-10' AND date_retour_effective is NULL; */
 
 
+function lastLogs($bdd, $user)
+{
+    $today = date("Y-m-d");
+    $user_id = $user['id'];
+    $requete = $bdd->prepare("UPDATE `utilisateurs` SET `connexion`='$today' WHERE id = $user_id");
+    $requete->execute();
+}
+
+function sauvegarderUtilisateur($bdd, $utilisateur_id) {
+    try {
+        // Récupérer les données utilisateur
+        $requete = $bdd->prepare("SELECT * FROM utilisateurs WHERE id = :id");
+        $requete->execute(['id' => $utilisateur_id]);
+        $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
+
+        if ($utilisateur) {
+            // Créer un fichier JSON pour sauvegarder les données
+            $backupDir = 'backups/';
+            if (!is_dir($backupDir)) {
+                mkdir($backupDir, 0755, true); // Créer le dossier si nécessaire
+            }
+            $backupFile = $backupDir . 'user_' . $utilisateur_id . '_' . date('Y-m-d_H-i-s') . '.json';
+            file_put_contents($backupFile, json_encode($utilisateur));
+
+            
+        }
+    } catch (Exception $e) {
+        echo "Erreur lors de la sauvegarde des données : " . $e->getMessage() . "<br>";
+    }
+}

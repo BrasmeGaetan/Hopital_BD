@@ -1,3 +1,6 @@
 #!/bin/bash
-var=$(date '+%-%m-%d')
-mysqldump --opt --host=localhost --user=login5468 --password=bxNRsHuRkepahth dblogin > /var/www/html/Hopital_BD/autre/backup_$var.sql;
+user=$USER
+pwd=$PASSWORD
+db=$DB
+var=$(date '+%m-%d-%Y_%H:%M:%S')
+mysqldump --opt --host=localhost --user=$user --password=$pwd dblogin5468 > /var/www/html/Hopital_BD/autre/.backup/backup_$var.sql;

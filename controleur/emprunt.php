@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $requete = $bdd->prepare("
             INSERT INTO emprunts (utilisateur_id, idlivre, titre, date_emprunt, genre, auteur, date_retour_prevue, date_retour_effective)
             VALUES (:utilisateur_id, :idlivre, :titre, :date_emprunt, :genre, :auteur, :date_retour_prevue, NULL)
-        ");
+            ");
 
         try {
             $success = $requete->execute([

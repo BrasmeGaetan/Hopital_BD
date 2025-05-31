@@ -80,6 +80,7 @@ if ($_GET["choix"] == 1) {
     if (!empty($_POST['delai_emprunt'])) {
         $delai = intval($_POST['delai_emprunt']);
         $date_limite = date('Y-m-d', strtotime("-$delai days"));
+        var_dump($date_limite);
 
         // Récupérer les emprunts non retournés depuis la date limite avec la nouvelle requête
         $query = $Connexion->prepare("
