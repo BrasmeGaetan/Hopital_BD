@@ -237,3 +237,10 @@ Join utilisateurs ON utilisateurs.id = emprunt.utilisateur_id
 where DATE_ADD(dateEmprunt, Interval 26 DAY) <= '2024-10-10' AND date_retour_effective is NULL; */
 
 
+function lastLogs($bdd, $user)
+{
+    $today = date("Y-m-d");
+    $user_id = $user['id'];
+    $requete = $bdd->prepare("UPDATE `utilisateurs` SET `connexion`='$today' WHERE id = $user_id");
+    $requete->execute();
+}

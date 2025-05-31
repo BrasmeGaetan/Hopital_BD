@@ -105,7 +105,6 @@
             </div>
         </form>
     </div>
-
     <div class="zone-menu-ext-cont">
         <form action="./index.php?action=menu&choix=4" method="post">
             <h1>Rechercher les emprunts non retournés</h1>
