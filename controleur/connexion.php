@@ -49,7 +49,11 @@ if (isset($_SESSION['valid']) && $_SESSION['valid']) {
                 // Inclure la page de réservation de livres pour les patients
                 include 'vue/vueConnexionPatient.php';
                 lastLogs($bdd, $user);
-            }
+            } elseif($_SESSION['roles'] == 3) {
+                // Inclure la page de réservation de livres pour les patients
+                include 'vue/vueConnexionBenevole.php';
+                lastLogs($bdd, $user);
+            } 
     
             exit(); // S'assurer que le script s'arrête ici
         } else {

@@ -18,6 +18,7 @@
                 <?php } ?>
             </select>
         </div>
+        
         <div>
             <label for="auteur-livre">Auteur du livre :</label>
             <select name="liste-auteur-livre" id="auteur-livre-saisie" required>
@@ -91,6 +92,43 @@
         <div>
             <input type="submit" value="Modifier" />
         </div>
+
+    </form>
+    <form action="./index.php?action=menu&choix=5" class="zone-menu" method="post">
+        <h1>Ajouter une tournée</h1>
+
+        <div>
+            <label for="tournee-select">Tournée :</label>
+            <select id="tournee-select" name="tournee_id" required>
+                <option value="">-- Sélectionner une tournée --</option>
+                <?php foreach ($tournee as $t): ?>
+                    <option value="<?= $t['id'] ?>">
+                    <?= htmlspecialchars($t['lesbenevoles'] . ' - ' . $t['lesservices']) ?>
+                    </option>
+
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div>
+            <label for="service-select">Service :</label>
+            <select id="service-select" name="service_id" required>
+                <option value="">-- Sélectionner un service --</option>
+                <?php foreach ($services as $s): ?>
+                    <option value="<?= $s['id'] ?>"
+                            data-etage="<?= htmlspecialchars($s['etage']) ?>"
+                            data-batiment="<?= htmlspecialchars($s['batiment']) ?>">
+                        <?= htmlspecialchars($s['nom']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div id="info-etage-batiment" style="margin-top: 1em; font-style: italic; color: #333;"></div>
+
+        <div>
+            <input type="submit" value="Enregistrer la tournée" />
+        </div>
     </form>
 
     <div class="zone-menu-ext-cont">
@@ -117,57 +155,8 @@
             </div>
         </form>
     </div>
-    <div class="zone-menu">
-    <nav>
-        <ul>
-            <li><a href="./index.php?action=accueil">Accueil</a></li>
-            <li><a href="./index.php?action=livres">Livres</a></li>
-            <li><a href="./index.php?action=emprunts">Mes emprunts</a></li>
-            <li><a href="./index.php?action=profil">Mon Profil</a></li>
-            
-            <?php if (isset($_SESSION['utilisateur_id'])): ?>
-                <li>
-                    <form action="./index.php?action=deconnexion" method="post">
-                        <button type="submit">Déconnexion</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="./index.php?action=oubli" method="post">
-                        <button type="submit">Droit à l'oubli</button>
-                    </form>
-                </li>
-            <?php else: ?>
-                <li><a href="./index.php?action=connexion">Connexion</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-</div>
+
 
 </div>
 
 
-<div class="zone-menu">
-    <nav>
-        <ul>
-            <li><a href="./index.php?action=accueil">Accueil</a></li>
-            <li><a href="./index.php?action=livres">Livres</a></li>
-            <li><a href="./index.php?action=emprunts">Mes emprunts</a></li>
-            <li><a href="./index.php?action=profil">Mon Profil</a></li>
-            
-            <?php if (isset($_SESSION['utilisateur_id'])): ?>
-                <li>
-                    <form action="./index.php?action=deconnexion" method="post">
-                        <button type="submit">Déconnexion</button>
-                    </form>
-                </li>
-                <li>
-                    <form action="./index.php?action=oubli" method="post">
-                        <button type="submit">Droit à l'oubli</button>
-                    </form>
-                </li>
-            <?php else: ?>
-                <li><a href="./index.php?action=connexion">Connexion</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
-</div>

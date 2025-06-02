@@ -257,6 +257,13 @@ function sauvegarderUtilisateur($bdd, $utilisateur_id) {
 Join utilisateurs ON utilisateurs.id = emprunt.utilisateur_id 
 where DATE_ADD(dateEmprunt, Interval 26 DAY) <= '2024-10-10' AND date_retour_effective is NULL; */
 
+function tournee($bdd) {
+    $requete = 'SELECT id, lesbenevoles, lesservices FROM tournee';
+    $repReq = $bdd->prepare($requete);
+    $repReq->execute();
+    return $repReq->fetchAll(PDO::FETCH_ASSOC); 
+}
+
 
 function lastLogs($bdd, $user)
 {

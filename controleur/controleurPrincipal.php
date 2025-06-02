@@ -14,6 +14,7 @@ function controleurPrincipal($action){
     $lesActions["emprunt"] = "emprunt.php";
     $lesActions["retour"] = "retour.php";
     $lesActions["oubli"] = "oubli.php";
+    $lesActions["tournee"] = "tournee.php";
 
     if (array_key_exists ( $action , $lesActions )){
         return $lesActions[$action];

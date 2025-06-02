@@ -108,6 +108,12 @@ if ($_GET["choix"] == 1) {
     } else {
         echo '<script>alert("Veuillez entrer un délai valide.")</script>';
     }
+} else if ($_GET["choix"] == 5) {
+    
+    $tournees = tournee($Connexion);    
+    $services = services($Connexion);   
+
+    include "vue/vueMenu.php";
 }
 
 // Récupération des données pour les formulaires (liste des auteurs, genres)
